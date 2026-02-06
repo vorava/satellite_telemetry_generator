@@ -1,0 +1,7 @@
+sensor,type,start_idx,duration,kwargs
+gyro_x_deg_s,increased_noise,8754,2021,{'extra_std': 0.1}
+gyro_x_deg_s,spike,60992,4923,{'magnitude': 1.0121141512376388}
+comms_snr_dB,decreased,40511,3990,{'factor': 0.5}
+cpu_temp_C,frozen,12343,1564,{}
+cpu_temp_C,drift,47489,621,{'drift_per_step': 0.01}
+telescope_sensor_V,stuck_at,7489,4621,{'value': 1.3}
