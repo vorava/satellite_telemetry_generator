@@ -6,7 +6,7 @@ Python based synthetic satellite telemetry generator. The generator can generate
 - stuck of signal at value X
 - signal drift
 - noise increase
-- signal froze
+- signal froze (at current value)
 - rapid decrease of signal values
 
 Visualization of those disortions can be seen in image below in **Example section**. Second type, environmental-based anomalies, affect multiple sensors at one timestamp. They are generated using the same set of signal disortions like sensor specific anomalies.
@@ -67,6 +67,19 @@ Generating telemetry using plan:
 The picture below shows what the generated telemetry, including the anomalies, looks like. All types of anomaly are labelled in the figure. 
 
 ![Satellite visualization](images/data.png)
+
+## Citation
+
+If you use this generator, please use following citation in your work:
+
+```bibtex
+@misc{satellite_telemetry_generator,
+    title    = {Satellite telemetry generator with annotated anomalies},
+    author   = {Vojtěch Orava},
+    date     = {2026},
+    url      = {https://github.com/vorava/satellite_telemetry_generator},
+}
+```
 
 ## License
 
