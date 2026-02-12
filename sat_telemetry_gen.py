@@ -241,7 +241,7 @@ class TelemetryGenerator:
         The anomaly plan is a list of dictionaries, where each dictionary
         contains the following keys:
         - "sensor": the name of the sensor to inject the anomaly into
-        - "type": the type of anomaly to inject (e.g. "spike", "stuck_at", etc.)
+        - "type": the type of anomaly to inject ("spike", "stuck_at", "drift", "increased_noise", "frozen", "decreased")
         - "start_idx": the starting index of the anomaly (in samples)
         - "duration": the duration of the anomaly (in samples)
         - "kwargs": additional keyword arguments to pass to the anomaly function
@@ -372,7 +372,7 @@ def build_default_sensors(gen: TelemetryGenerator) -> List[SensorSpec]:
 
     sensors.append(SensorSpec("battery_voltage_V", base_func=battery_voltage, noise_std=0.01, bounds=(3.0, 4.2)))
 
-    # CPU temperature: depends on activity (we model small daily pattern) and solar heating
+    # CPU temperature: depends on activity and solar heating
     def cpu_temp(t_h):
         return 35.0 + 5.0 * np.sin(2 * np.pi * t_h / 24.0) + 3.0 * np.random.randn(*t_h.shape) * 0.0
 
@@ -533,9 +533,9 @@ def generate_environmental_anomalies(total_len: int):
     start, dur = rand_window(2000, 5000)
     anomalies += [
         {"sensor": "rad_counts_cps_1", "type": "spike", "start_idx": start, "duration": dur,
-         "kwargs": {"magnitude": 20.0, "width": 10}},
+         "kwargs": {"magnitude": 20.0}},
         {"sensor": "rad_counts_cps_2", "type": "spike", "start_idx": start, "duration": dur,
-         "kwargs": {"magnitude": 25.0, "width": 10}},
+         "kwargs": {"magnitude": 25.0}},
         {"sensor": "mag_x_T", "type": "increased_noise", "start_idx": start, "duration": dur,
          "kwargs": {"extra_std": 1e-7}},
         {"sensor": "mag_y_T", "type": "increased_noise", "start_idx": start, "duration": dur,
@@ -593,11 +593,11 @@ def generate_environmental_anomalies(total_len: int):
         {"sensor": "telescope_sensor_V", "type": "decreased", "start_idx": start,
          "duration": dur, "kwargs": {"factor": 0.9}},
         {"sensor": "rad_counts_cps_1", "type": "spike", "start_idx": start, "duration": dur,
-         "kwargs": {"magnitude": 10.0, "width": 5}},
+         "kwargs": {"magnitude": 10.0}},
         {"sensor": "cpu_temp_C", "type": "spike", "start_idx": start, "duration": dur,
-         "kwargs": {"magnitude": 5.0, "width": 5}},
+         "kwargs": {"magnitude": 5.0}},
         {"sensor": "memory_usage_pct", "type": "spike", "start_idx": start, "duration": dur,
-         "kwargs": {"magnitude": 15.0, "width": 3}},
+         "kwargs": {"magnitude": 15.0}},
     ]
 
     return anomalies
