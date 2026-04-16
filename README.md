@@ -1,6 +1,6 @@
 # Satellite telemetry generator with annotated anomalies
 
-Python based synthetic satellite telemetry generator. The generator can generate signals of 13 different sensors (20 features at all, some sensors are duplicated, see image below). The generator injects anomalies in the signals randomly or based on the anomaly plan. Program can generate and inject two types of anomalies: **sensors failures** and **environment-based anomalies**. Sensor specific anomalies are affecting only one sensor at the time. They can use 6 different variations of signal disortion:
+This repository contains code of Python based synthetic satellite telemetry generator. The generator can generate signals of 13 different sensors (20 features at all, some sensors are duplicated, see image below for more details). The generator injects anomalies in the signals randomly or based on the anomaly plan. Program can generate and inject two types of anomalies: **sensors failures** and **environment-based anomalies**. Sensor specific anomalies are affecting only one sensor at the time. They can use 6 different variations of signal disortion:
 
 - signal spike
 - stuck of signal at value X
