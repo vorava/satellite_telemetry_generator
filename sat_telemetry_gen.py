@@ -403,6 +403,7 @@ def build_default_sensors(gen: TelemetryGenerator) -> List[SensorSpec]:
     sensors.append(SensorSpec("sun_sensor_counts", base_func=sun_sensor, noise_std=10.0, bounds=(0.0, 2000.0)))
 
     # Gyro rates - small angular rate noise around zero
+    # degrees per 1 second
     def gyro_x(t_h):
         return 0.01 * np.sin(2 * np.pi * t_h / 0.1)
 
